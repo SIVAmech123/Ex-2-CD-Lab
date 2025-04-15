@@ -1,37 +1,88 @@
 # Ex-2-GENERATION OF LEXICAL TOKENS LEX FLEX TOOL
+# Name:ALLAM SESANK
+# Reg no:212223240006
+# Date:15/04/2025
 # AIM
 ## To write a lex program to implement lexical analyzer to recognize a few patterns.
 # ALGORITHM
 
-1.	Start the program.
 
-2.	Lex program consists of three parts.
+Start the program.
 
-     a.	Declaration %%
+Lex program consists of three parts.
 
-     b.	Translation rules %%
+a. Declaration %%
 
-     c.	Auxilary procedure.
+b. Translation rules %%
 
-3.	The declaration section includes declaration of variables, maintest, constants and regular definitions.
-4.	Translation rule of lex program are statements of the form
+c. Auxilary procedure.
 
-    a.	P1 {action}
+The declaration section includes declaration of variables, maintest, constants and regular definitions.
 
-    b.	P2 {action}
+Translation rule of lex program are statements of the form
 
-    c.	…
+a. P1 {action}
 
-    d.	…
+b. P2 {action}
 
-    e.	Pn {action}
+c. Pn {action}
 
-5.	Write a program in the vi editor and save it with .l extension.
+Write a program in the vi editor and save it with .l extension.
 
-6.	Compile the lex program with lex compiler to produce output file as lex.yy.c. eg $ lex filename.l $ cc lex.yy.c
-7.	Compile that file with C compiler and verify the output.
+Compile the lex program with lex compiler to produce output file as lex.yy.c. eg $ lex filename.l $ cc lex.yy.c
+
+Compile that file with C compiler and verify the output.
 
 # INPUT
-# OUTPUT
-# RESULT
-## The lexical analyzer is implemented using lex and the output is verified.
+```
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+int isKeyword(char buffer[]) {
+    char keywords[5][10] = {"if", "else", "while", "for", "int"};
+    for (int i = 0; i < 5; ++i) {
+        if (strcmp(buffer, keywords[i]) == 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int main() {
+    char ch, buffer[15];
+    char operators[] = "+-*/=";
+    int i = 0;
+
+    printf("Enter your input: ");
+    
+    while ((ch = getchar()) != EOF) {
+        if (strchr(operators, ch)) {
+            printf("Operator: %c\n", ch);
+        } else if (isalnum(ch)) {
+            buffer[i++] = ch;
+        } else if ((ch == ' ' || ch == '\n' || ch == '\t') && i != 0) {
+            buffer[i] = '\0';
+
+            if (isKeyword(buffer)) {
+                printf("Keyword: %s\n", buffer);
+            } else if (isdigit(buffer[0])) {
+                printf("Number: %s\n", buffer);
+            } else {
+                printf("Identifier: %s\n", buffer);
+            }
+            i = 0;
+        }
+    }
+
+    return 0;
+}
+```
+# Output
+
+
+![image](https://github.com/user-attachments/assets/a10b63c7-e3bd-48be-b845-11dfd23a9d7a)
+
+
+# Result
+  The lexical analyzer is implemented using lex and the output is verified.
