@@ -1,7 +1,7 @@
 # Ex-2-GENERATION OF LEXICAL TOKENS LEX FLEX TOOL
-# Name:ALLAM SESANK
-# Reg no:212223240006
-# Date:15/04/2025
+# Name:SIVAKUMAR R
+# Reg no:212223230209
+# Date:17/04/2025
 # AIM
 ## To write a lex program to implement lexical analyzer to recognize a few patterns.
 # ALGORITHM
